@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yash.rtd.dao.UserDetailDao;
 import com.yash.rtd.model.UserDetail;
+/*@author harsh*/
 @Repository
 public class UserDetailDaoImpl implements UserDetailDao {
 
