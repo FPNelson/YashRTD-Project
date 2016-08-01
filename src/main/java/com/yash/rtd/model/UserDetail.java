@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * User Model will be used to hold the data from form. 
  * and perform form validation
- * @author manideep
+ * @author Harsh
  *
  */
 public class UserDetail {
