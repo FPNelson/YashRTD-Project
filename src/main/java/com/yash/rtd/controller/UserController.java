@@ -31,7 +31,6 @@ public class UserController {
 	public ModelAndView processLogin(@RequestParam("email") String email,
 			@RequestParam("password") String password){
 		//ToDo: login check: as per the user redirect on specified view
-		System.out.println("herer...");
 		UserDetail userDetail=new UserDetail();
 		userDetail.setEmail(email);
 		userDetail.setPassword(password);
@@ -40,7 +39,6 @@ public class UserController {
 		
 		ModelAndView mav=new ModelAndView("/admin/adminDashBoard");
 		mav.addObject("loggedInUser", loggedInUser);
-		System.out.println("mav:"+mav.getViewName());
 		return mav;
 		}
 		return null;
