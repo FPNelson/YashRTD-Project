@@ -35,6 +35,7 @@ public class UserController {
 		userDetail.setEmail(email);
 		userDetail.setPassword(password);
 		loggedInUser=userDetailService.authenticateUser(userDetail);
+		//check that the role id is for employee
 		if(loggedInUser.getFk_role_id()==3){
 		
 		ModelAndView mav=new ModelAndView("/admin/adminDashBoard");
