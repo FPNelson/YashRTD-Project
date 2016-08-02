@@ -28,16 +28,19 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping("/processLogin")
-	public ModelAndView processLogin(@RequestParam("username") String username,
+	public ModelAndView processLogin(@RequestParam("email") String email,
 			@RequestParam("password") String password){
 		//ToDo: login check: as per the user redirect on specified view
+		System.out.println("herer...");
 		UserDetail userDetail=new UserDetail();
-		userDetail.setUsername(username);
+		userDetail.setEmail(email);
 		userDetail.setPassword(password);
 		loggedInUser=userDetailService.authenticateUser(userDetail);
-		if(loggedInUser.getFk_role_id()==1){
+		if(loggedInUser.getFk_role_id()==3){
+		
 		ModelAndView mav=new ModelAndView("/admin/adminDashBoard");
 		mav.addObject("loggedInUser", loggedInUser);
+		System.out.println("mav:"+mav.getViewName());
 		return mav;
 		}
 		return null;
