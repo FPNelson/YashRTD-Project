@@ -36,7 +36,7 @@ public interface UserDetailService {
 	 */
 	public List<UserDetail> listUserDetail();
 	/**
-	 * This method will retun one user detail based on id
+	 * This method will return one user detail based on id
 	 * @param id
 	 * @return
 	 */
