@@ -24,7 +24,6 @@ public class UserDetailDaoImpl implements UserDetailDao {
 	
 	
 	public void insertUserDetail(UserDetail userDetail) {
-		System.out.println("here...");
 		String sql="insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
 				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"
 				+ "created_date,last_modified_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -32,19 +31,12 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		Date date=new Date();
 		java.sql.Timestamp timeStamp=new java.sql.Timestamp(date.getTime());
 		
-		System.out.println("insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
-				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"
-				+ "created_date,last_modified_date) values('"+userDetail.getFirstname()+"','"+userDetail.getLastname()
-				+"','"+userDetail.getEmail()+"','"+userDetail.getContact()+"','"+userDetail.getDob()
-				+"','"+userDetail.getPassword()+"',"+1+","+3+","+1+","+userDetail.getImage()
-				+",'"+userDetail.getDoj()+"',"+1+","+timeStamp+","+timeStamp);
-		
 		try{
 			jdbcTemplate.update(sql, new Object[]{userDetail.getFirstname(),userDetail.getLastname()
 					,userDetail.getEmail(),userDetail.getContact(),userDetail.getDob(),
 					userDetail.getPassword(),1,3,
 					1,userDetail.getImage(),userDetail.getDoj(),
-					1,"2016-08-02 22:07:47.965","2016-08-02 22:07:47.965"});
+					1,timeStamp,timeStamp});
 		}
 		catch(Exception ex){
 			throw new RuntimeException(ex);
