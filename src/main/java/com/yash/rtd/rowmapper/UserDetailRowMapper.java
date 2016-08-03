@@ -17,7 +17,6 @@ public class UserDetailRowMapper implements RowMapper<UserDetail> {
 		userDetail.setEmail(rs.getString("email"));
 		userDetail.setContact(rs.getString("contact"));
 		userDetail.setDob(rs.getDate("dob"));
-		userDetail.setUsername(rs.getString("username"));
 		userDetail.setPassword(rs.getString("password"));
 		userDetail.setFk_role_id(rs.getInt("fk_role_id"));
 		return userDetail;
