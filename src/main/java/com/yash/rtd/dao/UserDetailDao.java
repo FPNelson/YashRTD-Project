@@ -14,7 +14,6 @@ import com.yash.rtd.model.UserDetail;
  */
 public interface UserDetailDao {
 	
-
 	/**
 	 * this method will insert the user detail in DB.
 	 * @param userDetail
