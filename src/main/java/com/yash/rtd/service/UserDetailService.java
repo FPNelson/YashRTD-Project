@@ -2,6 +2,7 @@ package com.yash.rtd.service;
 
 import java.util.List;
 
+import com.yash.rtd.model.Gender;
 import com.yash.rtd.model.UserDetail;
 
 public interface UserDetailService {
@@ -47,5 +48,12 @@ public interface UserDetailService {
 	 * @return
 	 */
 	public List<UserDetail> findUserDetail(String freeText);
+	
+	/**
+	 * This method returns the list of values 
+	 * present in Gender table 
+	 * @return
+	 */
+	public List<Gender> listGenderDetails();
 
 }

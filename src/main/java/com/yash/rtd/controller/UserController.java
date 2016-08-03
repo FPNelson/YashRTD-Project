@@ -1,7 +1,10 @@
 package com.yash.rtd.controller;
 
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yash.rtd.dao.UserDetailDao;
+import com.yash.rtd.model.Gender;
 import com.yash.rtd.model.UserDetail;
 import com.yash.rtd.service.UserDetailService;
 
@@ -40,7 +44,9 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public ModelAndView showLoginForm(){
+		List<Gender> gender=userDetailService.listGenderDetails();
 		ModelAndView mav=new ModelAndView("/user/userLogin");
+		mav.addObject("gender", gender);
 		return mav;
 	}
 

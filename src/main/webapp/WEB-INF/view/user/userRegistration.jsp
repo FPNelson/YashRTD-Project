@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,13 +47,18 @@
 				</tr>
 				<tr>
 					<td>Gender</td>
-					<td>
-						<select>
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-							<option value="Not Specified">Not Specified</option>
-						</select>
-					</td>
+					
+					<c:forEach var="product" items="${productlist}">
+						
+					</c:forEach>
+					
+					<!-- <td>
+						<form:select path="userDetail.fk_gender_id">
+							<form:options items="${gender.gender}"/>
+						</form:select></td>-->
+					
+					
+						
 				</tr>
 				<tr>
 					<td>Image</td>

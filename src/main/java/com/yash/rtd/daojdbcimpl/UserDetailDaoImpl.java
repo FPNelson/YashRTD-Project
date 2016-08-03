@@ -1,15 +1,18 @@
 package com.yash.rtd.daojdbcimpl;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.yash.rtd.dao.UserDetailDao;
+import com.yash.rtd.model.Gender;
 import com.yash.rtd.model.UserDetail;
+import com.yash.rtd.rowmapper.GenderDetailsRowMapper;
 import com.yash.rtd.rowmapper.UserDetailRowMapper;
 
 @Repository
@@ -75,6 +78,14 @@ public class UserDetailDaoImpl implements UserDetailDao {
 	public List<UserDetail> findUserDetail(String freeText) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	public List<Gender> listGenderDetails() {
+		String sql="select * from gender";
+		List<Gender> genderList=jdbcTemplate.query(sql, new GenderDetailsRowMapper());
+		return genderList;
 	}
 
 }

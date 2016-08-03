@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yash.rtd.dao.UserDetailDao;
+import com.yash.rtd.model.Gender;
 import com.yash.rtd.model.UserDetail;
 import com.yash.rtd.service.UserDetailService;
 @Service
@@ -52,6 +53,11 @@ public class UserDetailServiceImpl implements UserDetailService {
 	public List<UserDetail> findUserDetail(String freeText) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public List<Gender> listGenderDetails() {
+		return userDetailDao.listGenderDetails();
 	}
 
 }
