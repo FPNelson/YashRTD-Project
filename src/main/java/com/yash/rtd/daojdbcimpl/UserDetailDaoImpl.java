@@ -1,18 +1,17 @@
 package com.yash.rtd.daojdbcimpl;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import com.yash.rtd.dao.UserDetailDao;
 import com.yash.rtd.model.UserDetail;
-/*@author harsh*/
+import com.yash.rtd.rowmapper.UserDetailRowMapper;
+
 @Repository
 public class UserDetailDaoImpl implements UserDetailDao {
 
@@ -25,30 +24,39 @@ public class UserDetailDaoImpl implements UserDetailDao {
 	
 	
 	public void insertUserDetail(UserDetail userDetail) {
-		// TODO Auto-generated method stub
-
+		System.out.println("here...");
+		String sql="insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
+				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"
+				+ "created_date,last_modified_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		Date date=new Date();
+		java.sql.Timestamp timeStamp=new java.sql.Timestamp(date.getTime());
+		
+		System.out.println("insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
+				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"
+				+ "created_date,last_modified_date) values('"+userDetail.getFirstname()+"','"+userDetail.getLastname()
+				+"','"+userDetail.getEmail()+"','"+userDetail.getContact()+"','"+userDetail.getDob()
+				+"','"+userDetail.getPassword()+"',"+1+","+3+","+1+","+userDetail.getImage()
+				+",'"+userDetail.getDoj()+"',"+1+","+timeStamp+","+timeStamp);
+		
+		try{
+			jdbcTemplate.update(sql, new Object[]{userDetail.getFirstname(),userDetail.getLastname()
+					,userDetail.getEmail(),userDetail.getContact(),userDetail.getDob(),
+					userDetail.getPassword(),1,3,
+					1,userDetail.getImage(),userDetail.getDoj(),
+					1,"2016-08-02 22:07:47.965","2016-08-02 22:07:47.965"});
+		}
+		catch(Exception ex){
+			throw new RuntimeException(ex);
+		}
+		
 	}
 
-	public UserDetail authenticateUser(UserDetail userDetail) {
+	public UserDetail authenticateUser(UserDetail userDetail) {		
 		
-		
-		String sql="select * from users where email='"+userDetail.getEmail()+"' and password='"+userDetail.getPassword()+"'";
-		System.out.println("sql:"+sql);
-		return jdbcTemplate.query(sql, new ResultSetExtractor<UserDetail>(){
-			
-			public UserDetail extractData(ResultSet rs) throws SQLException,
-					DataAccessException {
-				UserDetail user=null;
-				if(rs.next()){
-					user=new UserDetail();
-					user.setFk_role_id(3);
-					user.setFirstname(rs.getString("firstname"));
-				}
-				
-				return user;
-			}
-			
-		});
+		String sql="select * from users where email=? and password=?";
+		UserDetail uDetail = (UserDetail)jdbcTemplate.queryForObject(sql, new Object[]{userDetail.getEmail(),userDetail.getPassword()}, new UserDetailRowMapper());
+		return uDetail;
 
 	}
 

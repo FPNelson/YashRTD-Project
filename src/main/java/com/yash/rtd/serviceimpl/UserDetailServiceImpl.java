@@ -20,7 +20,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 	
 
 	public void insertUserDetail(UserDetail userDetail) {
-		// TODO Auto-generated method stub
+		userDetailDao.insertUserDetail(userDetail);
 
 	}
 
