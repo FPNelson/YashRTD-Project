@@ -3,6 +3,13 @@ package com.yash.rtd.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.mysql.jdbc.Blob;
+
 /**
  * User Model will be used to hold the data from form. 
  * and perform form validation
@@ -17,35 +24,37 @@ public class UserDetail {
 	/**
 	 * user's firstname
 	 */
+	@Size(min=2, max=30)
 	private String firstname;
 	/**
 	 * user's last name
 	 */
+	
+	@Size(min=2, max=30)
 	private String lastname;
 	/**
 	 * user's email
 	 */
+	@Email
 	private String email;
 	/**
 	 * user's contact
 	 */
+	@Size(min=10, max=10)
 	private String contact;
 	/**
 	 * user's dob
 	 */
 	private Date dob;
-	/**
-	 * user's username
-	 */
-	private String username;
+
 	/**
 	 * user's password
 	 */
 	private String password;
 	/**
-	 * user's gender
+	 * user's gender--linked with gender table
 	 */
-	private String gender;
+	private int fk_gender_id;
 	/**
 	 * user's role---linked with role table
 	 */
@@ -54,10 +63,19 @@ public class UserDetail {
 	 * user's status---linked with status table
 	 */
 	private int fk_status_id;// fk from status table
+	
+	/**
+	 * user's image
+	 */
+	private Blob image;
 	/**
 	 * user's date of joining
 	 */
 	private Date doj;
+	/**
+	 * user's location--linked with location table
+	 */
+	private int fk_company_location_id;
 	/**
 	 * id of user, who created this user
 	 * In case if admin creates the user, in that case admin id will be hold
@@ -77,6 +95,24 @@ public class UserDetail {
 	 * If user is modified, then modified date must be stored in system automatically
 	 */
 	private Timestamp last_modified_date;
+	public int getFk_gender_id() {
+		return fk_gender_id;
+	}
+	public void setFk_gender_id(int fk_gender_id) {
+		this.fk_gender_id = fk_gender_id;
+	}
+	public Blob getImage() {
+		return image;
+	}
+	public void setImage(Blob image) {
+		this.image = image;
+	}
+	public int getFk_company_location_id() {
+		return fk_company_location_id;
+	}
+	public void setFk_company_location_id(int fk_company_location_id) {
+		this.fk_company_location_id = fk_company_location_id;
+	}
 	public int getId() {
 		return id;
 	}
@@ -113,24 +149,14 @@ public class UserDetail {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+
 	public int getFk_role_id() {
 		return fk_role_id;
 	}

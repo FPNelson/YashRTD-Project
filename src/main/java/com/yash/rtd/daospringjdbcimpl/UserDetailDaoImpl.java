@@ -37,8 +37,8 @@ public class UserDetailDaoImpl implements UserDetailDao{
 	public UserDetail authenticateUser(UserDetail userDetail) {
 		//Get firstname, lastname, username, password roleid from 
 		// user table
-		String sql="select * from user where username=? and password=?";
-		UserDetail loggedInUser=jdbcTemplate.queryForObject(sql, new Object[]{userDetail.getUsername(),
+		String sql="select * from user where email=? and password=?";
+		UserDetail loggedInUser=jdbcTemplate.queryForObject(sql, new Object[]{userDetail.getEmail(),
 				userDetail.getPassword()}, new UserDetailRowMapper());
 		return loggedInUser;
 	}
