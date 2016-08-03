@@ -10,7 +10,7 @@
 
 <fieldset>
 	<legend>User Login</legend>
-	<form action="./processLogin.htm">
+	<form action="./processLogin.htm" method="post">
 		<table>
 			<tr>
 				<td>User Name</td>

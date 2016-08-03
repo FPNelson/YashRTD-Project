@@ -24,8 +24,6 @@ public class UserDetailDaoImpl implements UserDetailDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	
-	
 	public void insertUserDetail(UserDetail userDetail) {
 		String sql="insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
 				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"

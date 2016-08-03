@@ -23,7 +23,16 @@ public class AdminController {
 	
 	@RequestMapping("/addLocation")
 	public ModelAndView showAddLocationForm(){
-		ModelAndView mav=new ModelAndView("/admin/addLocation");
+		System.out.println("in add location");
+		ModelAndView mav=new ModelAndView("/user/admin/addLocation");
+		return mav;
+	}
+	
+
+	@RequestMapping("/search")
+	public ModelAndView search(){
+		System.out.println("in search location");
+		ModelAndView mav=new ModelAndView("/user/admin/addLocation");
 		return mav;
 	}
 	
@@ -31,7 +40,7 @@ public class AdminController {
 	public ModelAndView processLocation(@ModelAttribute("location")Location location){
 		adminService.insertLocation(location);
 		System.out.println("Reached to controller");
-		ModelAndView mav=new ModelAndView("/admin/adminDashBoard");
+		ModelAndView mav=new ModelAndView("/user/admin/adminDashBoard");
 		return mav;	
 	}
 }
