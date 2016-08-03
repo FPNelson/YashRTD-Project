@@ -62,9 +62,9 @@ public class UserController {
 		userDetail.setPassword(password);
 		loggedInUser=userDetailService.authenticateUser(userDetail);
 		//check that the role id is for employee.
-		if(loggedInUser.getFk_role_id()==3){
+		if(loggedInUser.getFk_role_id()==1){
 		
-		ModelAndView mav=new ModelAndView("/admin/adminDashBoard");
+		ModelAndView mav=new ModelAndView("user/admin/adminDashBoardpage");
 		mav.addObject("loggedInUser", loggedInUser);
 		return mav;
 		}
@@ -94,7 +94,5 @@ public class UserController {
 	
 			}
 		}
-		
-	}
-
+	}	
 }
