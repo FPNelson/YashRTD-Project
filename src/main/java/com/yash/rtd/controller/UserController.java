@@ -73,6 +73,41 @@ public class UserController {
 		ModelAndView mav=new ModelAndView("user/admin/adminDashBoardpage");
 		mav.addObject("loggedInUser", loggedInUser);
 		return mav;
+		}else if(loggedInUser.getFk_role_id()==2){
+			
+			ModelAndView mav=new ModelAndView("user/trainer/trainerDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==3){
+				
+			ModelAndView mav=new ModelAndView("user/trainee/traineeDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==4){
+			
+			ModelAndView mav=new ModelAndView("user/rtdManager/rtdManagerDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==5){
+			
+			ModelAndView mav=new ModelAndView("user/manager/managerDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==6){
+			
+			ModelAndView mav=new ModelAndView("user/mentor/mentorDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==7){
+			
+			ModelAndView mav=new ModelAndView("user/technical_evaluator/technical_evaluatorDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
+		}else if(loggedInUser.getFk_role_id()==8){
+			
+			ModelAndView mav=new ModelAndView("user/guest/guestDashBoardpage");
+			mav.addObject("loggedInUser", loggedInUser);
+			return mav;
 		}
 		return null;
 	}
