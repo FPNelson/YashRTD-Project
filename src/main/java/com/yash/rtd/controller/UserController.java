@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yash.rtd.dao.UserDetailDao;
 import com.yash.rtd.model.Gender;
 import com.yash.rtd.model.UserDetail;
 import com.yash.rtd.service.UserDetailService;
@@ -40,13 +39,21 @@ public class UserController {
 	public void setUserDetailService(UserDetailService userDetailService) {
 		this.userDetailService = userDetailService;
 	}
+
+	void initLists(Model model) {
+		List<Gender> gender=new ArrayList<Gender>();
+		gender=userDetailService.listGenderDetails();
+		model.addAttribute("genderList", gender);
+		
+		
+		
+	}
 	
 	
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView showLoginForm(){
-		List<Gender> gender=userDetailService.listGenderDetails();
+		
 		ModelAndView mav=new ModelAndView("/user/userLogin");
-		mav.addObject("gender", gender);
 		return mav;
 	}
 
@@ -59,7 +66,7 @@ public class UserController {
 		webDataBinder.registerCustomEditor(Date.class, "doj", new CustomDateEditor(dateFormat, true));
 
 	}
-	@RequestMapping("/processLogin")
+	@RequestMapping(value="/processLogin", method=RequestMethod.POST)
 	public ModelAndView processLogin(@RequestParam("email") String email,
 			@RequestParam("password") String password){
 		//ToDo: login check: as per the user redirect on specified view
@@ -111,16 +118,18 @@ public class UserController {
 		}
 		return null;
 	}
-	@RequestMapping("/userRegistration")
-	public ModelAndView showRegistrationForm(){
-		ModelAndView mav=new ModelAndView("/user/userRegistration");
-		return mav;
+	@RequestMapping(value="/userRegistration",method=RequestMethod.GET)
+	public String showRegistrationForm(Model model){
+		//ModelAndView mav=new ModelAndView("/user/userRegistration");
+		initLists(model);
+		return "/user/userRegistration";
 	}
 	
 	@RequestMapping(value="/processRegistration", method=RequestMethod.POST)
 	public String processRegistration(@ModelAttribute("userDetail") @Valid UserDetail userDetail, BindingResult bindingResult){
 		ModelAndView mav=null;
 		if(bindingResult.hasErrors()){
+			System.out.println("error..");
 			return ("/user/userRegistration");
 		}
 		else{
@@ -131,6 +140,7 @@ public class UserController {
 			}
 			
 			catch(Exception ex){
+				ex.printStackTrace();
 				return "/user/errorPage";
 	
 			}

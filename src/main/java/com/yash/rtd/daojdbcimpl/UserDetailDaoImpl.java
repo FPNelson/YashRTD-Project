@@ -25,17 +25,21 @@ public class UserDetailDaoImpl implements UserDetailDao {
 	}
 	
 	public void insertUserDetail(UserDetail userDetail) {
+		
 		String sql="insert into users(firstname,lastname,email,contact,dob,password,fk_gender_id,"
 				+ "fk_role_id,fk_status_id,image,doj,fk_company_location_id,"
-				+ "created_date,last_modified_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "created_date,last_modified_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Date date=new Date();
 		java.sql.Timestamp timeStamp=new java.sql.Timestamp(date.getTime());
 		
+		/*String addressSql="insert into user_address(fk_user_id, street, fk_city_id,"
+				+ "fk_state_id,zipcode,fk_country_id) values()"*/
+		
 		try{
 			jdbcTemplate.update(sql, new Object[]{userDetail.getFirstname(),userDetail.getLastname()
 					,userDetail.getEmail(),userDetail.getContact(),userDetail.getDob(),
-					userDetail.getPassword(),1,3,
+					userDetail.getPassword(),userDetail.getFk_gender_id(),3,
 					1,userDetail.getImage(),userDetail.getDoj(),
 					1,timeStamp,timeStamp});
 		}

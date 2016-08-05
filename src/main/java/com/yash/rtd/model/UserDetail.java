@@ -50,6 +50,7 @@ public class UserDetail {
 	/**
 	 * user's password
 	 */
+	
 	private String password;
 	/**
 	 * user's gender--linked with gender table

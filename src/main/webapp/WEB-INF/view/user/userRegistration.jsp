@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,20 +46,20 @@
 					
 				</tr>
 				<tr>
-					<td>Gender</td>
-					
-					<c:forEach var="product" items="${productlist}">
-						
-					</c:forEach>
-					
-					<!-- <td>
-						<form:select path="userDetail.fk_gender_id">
-							<form:options items="${gender.gender}"/>
-						</form:select></td>-->
-					
-					
-						
+					<td>Gender:</td>
+						<c:forEach var="g" items="${genderList}">
+							<tr>
+								<td><input type="radio" name="fk_gender_id" value="${g.gender_id}">${g.gender}</td>
+							</tr>
+						</c:forEach>
+
 				</tr>
+				
+				<tr>
+				
+				
+				</tr>
+				
 				<tr>
 					<td>Image</td>
 					<td><input type="file" id="myFile" />&nbsp; <form:errors class="err" path="userDetail.image"/></td>
