@@ -8,5 +8,9 @@
 </head>
 <body>
 Welcome : ${loggedInUser.firstname}
+<form action="../admin/viewUsersByLocation.htm" method="post">
+	location by ZipCode/location name:<input type="text" name="companylocation">
+	<input type="submit" value="search">
+</form>
 </body>
 </html>

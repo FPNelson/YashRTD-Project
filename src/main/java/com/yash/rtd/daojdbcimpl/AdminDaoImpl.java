@@ -31,8 +31,8 @@ public class AdminDaoImpl implements AdminDao {
 				+ "INNER JOIN countries countries ON countries.id = states.fk_country_id "
 				+ "where cities.city_name=? and states.state_name=? and countries.country_name=?";
 		int city_id = jdbcTemplate.queryForInt(sql,
-				new Object[] { location.getCity(), location.getState(),
-						location.getCountry() });
+				new Object[] { location.getCity_name(), location.getState_name(),
+						location.getCountry_name() });
 
 		sql = "insert into company_locations(fk_city_id,location_name,location_zipcode) "
 				+ "values(?,?,?)";
@@ -56,9 +56,12 @@ public class AdminDaoImpl implements AdminDao {
 		return null;
 	}
 
-	public List<UserDetail> searchUserDetailsByLocation(Location location) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserDetail> searchUserDetailsByLocation(String location) {
+		
+		//String sql = "SELECT * FROM users AS u JOIN company_locations AS c ON u.fk_company_location_id = c.id  WHERE c.`location_zipcode` = ? OR c.`location_name`= ?";
+		String sql = "SELECT * FROM users u JOIN company_locations cl ON u.`fk_company_location_id`=cl.id JOIN cities ct ON cl.`fk_city_id`=ct.`id` JOIN states st ON ct.`fk_state_id`=st.`id` JOIN countries c ON st.`fk_country_id`=c.`ID` where c.`COUNTRY_NAME` LIKE ? OR cl.location_zipcode LIKE ? OR cl.location_name LIKE ? OR st.state_name LIKE ? or ct.city_name LIKE ?";
+		List<UserDetail> userDetailList= jdbcTemplate.query(sql, new Object[]{location,location,location,location,location}, new UserDetailRowMapper());
+		return userDetailList;
 	}
 
 }

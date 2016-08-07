@@ -1,5 +1,7 @@
 package com.yash.rtd.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yash.rtd.model.Location;
+import com.yash.rtd.model.UserDetail;
 import com.yash.rtd.service.AdminService;
 
 
@@ -32,6 +35,7 @@ public class AdminController {
 	@RequestMapping("/search")
 	public ModelAndView search(){
 		System.out.println("in search location");
+		//pass to model
 		ModelAndView mav=new ModelAndView("/user/admin/addLocation");
 		return mav;
 	}
@@ -43,4 +47,14 @@ public class AdminController {
 		ModelAndView mav=new ModelAndView("/user/admin/adminDashBoard");
 		return mav;	
 	}
+	
+	@RequestMapping(value = "/viewUsersByLocation",method=RequestMethod.POST)
+	public ModelAndView viewUsersByLocation(@RequestParam("companylocation") String location){
+		List<UserDetail> userDetail = adminService.searchUserDetailsByLocation(location);
+		ModelAndView mav=new ModelAndView("/user/admin/viewUsersByLocation");
+		mav.addObject("UserDetail", userDetail);
+		return mav;	
+	}
+	
+	
 }

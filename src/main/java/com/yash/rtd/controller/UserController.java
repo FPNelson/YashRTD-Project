@@ -67,54 +67,47 @@ public class UserController {
 
 	}
 	@RequestMapping(value="/processLogin", method=RequestMethod.POST)
-	public ModelAndView processLogin(@RequestParam("email") String email,
-			@RequestParam("password") String password){
+	public String processLogin(@RequestParam("email") String email,
+			@RequestParam("password") String password,Model model){
 		//ToDo: login check: as per the user redirect on specified view
 		UserDetail userDetail=new UserDetail();
 		userDetail.setEmail(email);
 		userDetail.setPassword(password);
 		loggedInUser=userDetailService.authenticateUser(userDetail);
+		
 		//check that the role id is for employee.
 		if(loggedInUser.getFk_role_id()==1){
-		
-		ModelAndView mav=new ModelAndView("user/admin/adminDashBoardpage");
-		mav.addObject("loggedInUser", loggedInUser);
-		return mav;
+			
+		model.addAttribute("loggedInUser", loggedInUser);
+		return "user/admin/adminDashBoard";
 		}else if(loggedInUser.getFk_role_id()==2){
 			
-			ModelAndView mav=new ModelAndView("user/trainer/trainerDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/trainer/trainerDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==3){
-				
-			ModelAndView mav=new ModelAndView("user/trainee/traineeDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+		
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/trainee/traineeDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==4){
 			
-			ModelAndView mav=new ModelAndView("user/rtdManager/rtdManagerDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/rtdManager/rtdManagerDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==5){
 			
-			ModelAndView mav=new ModelAndView("user/manager/managerDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/manager/managerDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==6){
 			
-			ModelAndView mav=new ModelAndView("user/mentor/mentorDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/mentor/mentorDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==7){
 			
-			ModelAndView mav=new ModelAndView("user/technical_evaluator/technical_evaluatorDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/technical_evaluator/technical_evaluatorDashBoardpage";
 		}else if(loggedInUser.getFk_role_id()==8){
 			
-			ModelAndView mav=new ModelAndView("user/guest/guestDashBoardpage");
-			mav.addObject("loggedInUser", loggedInUser);
-			return mav;
+			model.addAttribute("loggedInUser", loggedInUser);
+			return "user/guest/guestDashBoardpage";
 		}
 		return null;
 	}

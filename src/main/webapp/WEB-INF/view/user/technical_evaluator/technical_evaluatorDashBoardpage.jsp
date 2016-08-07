@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>In technical Evaluator page</h1>
+Welcome : ${loggedInUser.firstname}
 </body>
 </html>

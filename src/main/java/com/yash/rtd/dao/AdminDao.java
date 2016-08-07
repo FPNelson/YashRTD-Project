@@ -15,5 +15,6 @@ public interface AdminDao {
 	
 	public List<Location> searchLocation(Location location);
 	
-	public List<UserDetail> searchUserDetailsByLocation(Location location);
+	public List<UserDetail> searchUserDetailsByLocation(String location);
+
 }

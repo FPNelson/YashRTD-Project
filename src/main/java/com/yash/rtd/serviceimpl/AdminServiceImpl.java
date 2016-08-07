@@ -3,6 +3,7 @@ package com.yash.rtd.serviceimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.yash.rtd.dao.AdminDao;
@@ -38,9 +39,7 @@ public class AdminServiceImpl implements AdminService {
 		return null;
 	}
 
-	public List<UserDetail> searchUserDetailsByLocation(Location location) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserDetail> searchUserDetailsByLocation(String location) {
+		return adminDao.searchUserDetailsByLocation(location);
 	}
-
 }

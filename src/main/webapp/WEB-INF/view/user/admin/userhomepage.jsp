@@ -7,7 +7,7 @@
 						<strong> Select Location </strong>
 					</div>
 					<div class="panel-body">
-						<form role="form" action="admin/listusers.do" method="POST">
+						<form role="form" action="../admin/viewUsersByFullLocation.htm" method="POST">
 							<fieldset>	
 								<div class="row">
 									<div class="col-sm-8 col-md-10  col-md-offset-1 ">
@@ -16,9 +16,9 @@
 												<span class="input-group-addon"> <i
 													class="glyphicon glyphicon-map-marker"></i>
 												</span> 
-												<select name="companyLocations.location_name" class="form-control" aria-labelledby="dropdownMenu1" data-style="btn-primary">
+												<select name="location_name" class="form-control" aria-labelledby="dropdownMenu1" data-style="btn-primary">
 													<option value="" selected disabled>Choose Company Location</option>
-													<option value="USA-URBANDALE-114TH Street">USA-URBANDALE-114TH Street</option>
+													<option value="USA,Des Moines,URBANDALE,114th Street">USA-Des Moines-URBANDALE-114TH Street</option>
 													<option value="INDIA-INDORE-Bansi Trade Center">INDIA-INDORE-BANSAI TRADE CENTER</option>
 													<option value="INDIA-INDORE-Crystal IT PARK">INDIA-INDORE-CRYSTAL IT PARK</option>
 													<option value="INDIA-HYDERABAD-IT Park">INDIA-HYDERABAD-IT PARK</option>
